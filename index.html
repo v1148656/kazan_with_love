@@ -240,26 +240,31 @@
             margin: 0 auto 30px;
             color: #2f4d5c;
         }
+        
+        /* ИСПРАВЛЕННЫЙ НОМЕР ТЕЛЕФОНА - теперь всегда в одну строку */
         .phone-big {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             background: #1b3b4a;
             color: white;
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
-            padding: 20px 50px;
+            padding: 15px 30px;
             border-radius: 80px;
             text-decoration: none;
             box-shadow: 0 10px 20px rgba(0,20,10,0.4);
             border: 2px solid #ffbc6e;
             transition: 0.2s;
             margin-top: 10px;
+            white-space: nowrap; /* Запрещаем перенос текста */
+            max-width: 100%;
         }
         .phone-big i {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: #ffbc6e;
+            flex-shrink: 0; /* Иконка не сжимается */
         }
         .phone-big:hover {
             background: #10303e;
@@ -330,15 +335,49 @@
             .hero h2 { font-size: 1.4rem; }
             .section-title { font-size: 2rem; }
             .city-img { height: 220px; }
-            .phone-big { font-size: 1.6rem; padding: 15px 25px; }
-            .phone-big i { font-size: 2rem; }
-            .messenger-link { font-size: 1.2rem; padding: 12px 20px; }
-        }
-        @media (max-width: 450px) {
-            .hero .guide-name { font-size: 1.2rem; }
+            
+            /* Адаптация номера для планшетов */
+            .phone-big { 
+                font-size: 1.5rem; 
+                padding: 12px 20px; 
+                gap: 8px;
+            }
+            .phone-big i { 
+                font-size: 1.7rem; 
+            }
+            
+            .messenger-link { 
+                font-size: 1.2rem; 
+                padding: 12px 20px; 
+            }
         }
         
-        /* ===== ИСПРАВЛЕНИЕ БЛОКА С ФОТО МАМЫ ===== */
+        @media (max-width: 450px) {
+            .hero .guide-name { 
+                font-size: 1.2rem; 
+            }
+            
+            /* Финальная адаптация для самых маленьких экранов */
+            .phone-big { 
+                font-size: 1.2rem; 
+                padding: 10px 16px; 
+                gap: 6px;
+            }
+            .phone-big i { 
+                font-size: 1.4rem; 
+            }
+            
+            .messenger-link { 
+                font-size: 1rem; 
+                padding: 10px 16px; 
+                gap: 8px;
+            }
+            .messenger-link i {
+                font-size: 1.4rem;
+            }
+        }
+        
+        /* ===== БЛОК С ФОТО МАМЫ (адаптивный) ===== */
         .about-guide {
             background: #e5d5c0;
             border-radius: 100px 20px 100px 20px;
@@ -348,12 +387,12 @@
         }
         .about-guide .guide-flex {
             display: flex;
-            flex-wrap: wrap; /* Теперь элементы будут переноситься */
+            flex-wrap: wrap;
             align-items: center;
             gap: 40px;
         }
         .guide-quote {
-            flex: 1 1 300px; /* Минимум 300px, может растягиваться */
+            flex: 1 1 300px;
             min-width: 250px;
         }
         .guide-quote i {
@@ -375,15 +414,14 @@
             font-weight: 500;
         }
         .guide-photo {
-            flex: 0 0 250px; /* Фиксированная ширина, не сжимается */
+            flex: 0 0 250px;
             height: 250px;
             border-radius: 50%;
             background: url('https://fs.tonkosti.ru/tonkosti/table_img/g190/7d7d/268967919.jpg') center/cover;
             box-shadow: 0 20px 30px #5e4d3b60;
-            margin: 0 auto; /* Центрируем, если фото одно */
+            margin: 0 auto;
         }
         
-        /* Дополнительная адаптация для маленьких экранов */
         @media (max-width: 700px) {
             .about-guide {
                 padding: 30px 20px;
@@ -522,6 +560,8 @@
         <div class="cta-section">
             <h3>Откройте Татарстан с любовью!</h3>
             <p>Просто позвоните или напишите Любови — и она соберёт для вас идеальную экскурсию.</p>
+            
+            <!-- ИСПРАВЛЕННЫЙ НОМЕР - теперь всегда в одну строку -->
             <a href="tel:+79061159039" class="phone-big">
                 <i class="fas fa-phone-alt"></i> +7 (906) 115-90-39
             </a>
@@ -539,7 +579,7 @@
         </div>
     </div>
 
-    <!-- Немного личного / Галерея вдохновения (ИСПРАВЛЕННЫЙ БЛОК) -->
+    <!-- Немного личного / Галерея вдохновения -->
     <div class="container">
         <div class="about-guide">
             <div class="guide-flex">
