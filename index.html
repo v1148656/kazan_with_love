@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экскурсии с Любовью Эйдельман | Казань • Свияжск • Болгар</title>
+    <!-- Шрифты и Font Awesome для иконок -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fefaf5;
+            color: #2d2d2a;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+        /* Хедер с красивым градиентным фоном */
+        .hero {
+            background: linear-gradient(135deg, #1b2b40 0%, #3b5e6b 100%), url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMCAwaDMyVjMySDB6IiBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDMiLz48cGF0aCBkPSJNMTYgM2w3IDctNyA3LTctN3oiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOCA4KSIvPjwvc3ZnPg==');
+            background-blend-mode: overlay;
+            background-size: cover, auto;
+            color: white;
+            padding: 80px 0 100px;
+            position: relative;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border-bottom-left-radius: 50% 10%;
+            border-bottom-right-radius: 50% 10%;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(to top right, #fefaf5 49%, transparent 51%);
+        }
+        .hero-content {
+            max-width: 800px;
+        }
+        .hero h1 {
+            font-size: 3.4rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+        .hero h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            opacity: 0.95;
+            margin-bottom: 30px;
+            border-left: 5px solid #ffb347;
+            padding-left: 20px;
+        }
+        .hero .guide-name {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.4);
+            margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .hero .guide-name i {
+            color: #ffd966;
+            margin-right: 10px;
+        }
+        /* Секции */
+        section {
+            padding: 70px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.6rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1e3c4f;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #c49a6c, #e1b382);
+            background-color: #c49a6c;
+            border-radius: 4px;
+        }
+        .intro-text {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 50px;
+            font-size: 1.2rem;
+            color: #3e5c6f;
+        }
+        /* Карточки городов (красивые изображения через background) */
+        .city-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .city-card {
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px -10px rgba(0, 40, 40, 0.2);
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        .city-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 40px -10px #1e3c4f66;
+        }
+        .city-img {
+            height: 270px;
+            background-size: cover;
+            background-position: center 30%;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+        /* Уникальные изображения для каждого города (гарантированно рабочие ссылки Unsplash) */
+        .city-img.kazan {
+            background-image: linear-gradient(0deg, rgba(0, 30, 40, 0.6) 0%, rgba(0,0,0,0.2) 40%), url('https://cdn2.tu-tu.ru/image/pagetree_node_data/1/6e70db6af583fd51367e2b96fa382eae/');
+            background-position: center 20%;
+        }
+        .city-img.sviyazhsk {
+            background-image: linear-gradient(0deg, rgba(0, 40, 30, 0.6) 0%, rgba(0,0,0,0.2) 40%), url('https://mf.b37mrtl.ru/rbthmedia/images/2022.11/original/63721feb5846663b0811f141.jpg');
+            background-position: center 40%;
+        }
+        .city-img.bolgar {
+            background-image: linear-gradient(0deg, rgba(60, 30, 0, 0.6) 0%, rgba(0,0,0,0.2) 40%), url('https://tur-ray.ru/wp-content/uploads/2021/01/belaya-mechet.jpg');
+            background-position: center 40%;
+        }
+        .city-img h3 {
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-shadow: 0 4px 15px black;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .city-info {
+            padding: 25px 20px 30px;
+            background: white;
+        }
+        .city-info p {
+            margin-bottom: 20px;
+            color: #2e4a5c;
+            font-weight: 500;
+        }
+        .city-feature {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        .city-feature li {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .city-feature i {
+            color: #c49a6c;
+            width: 22px;
+            font-size: 1.2rem;
+        }
+
+        /* Плюсы работы с Любовью */
+        .benefits {
+            background: #f0f0ea;
+            background-image: radial-gradient(circle at 10% 20%, rgba(255,255,240,0.5) 0%, transparent 30%);
+            border-radius: 80px 80px 0 0;
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .benefit-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(4px);
+            border-radius: 50px;
+            box-shadow: 0 15px 25px -10px #a7b8bf;
+            transition: 0.2s;
+        }
+        .benefit-item i {
+            font-size: 3.2rem;
+            color: #b76e3c;
+            margin-bottom: 20px;
+        }
+        .benefit-item h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #1e3c4f;
+        }
+
+        /* Призыв к действию + номер + мессенджеры */
+        .cta-section {
+            background: linear-gradient(125deg, #d9d2c0, #efd9c6);
+            border-radius: 60px 60px 30px 30px;
+            margin: 40px auto 60px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 25px 35px -10px #918f7a;
+        }
+        .cta-section h3 {
+            font-size: 2.5rem;
+            color: #1e2f3a;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .cta-section p {
+            font-size: 1.3rem;
+            max-width: 650px;
+            margin: 0 auto 30px;
+            color: #2f4d5c;
+        }
+        .phone-big {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: #1b3b4a;
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 700;
+            padding: 20px 50px;
+            border-radius: 80px;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(0,20,10,0.4);
+            border: 2px solid #ffbc6e;
+            transition: 0.2s;
+            margin-top: 10px;
+        }
+        .phone-big i {
+            font-size: 2.5rem;
+            color: #ffbc6e;
+        }
+        .phone-big:hover {
+            background: #10303e;
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px #0000003b;
+        }
+        
+        /* Блок с мессенджерами */
+        .messenger-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 25px 0 10px;
+        }
+        .messenger-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            padding: 15px 35px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: #1e3c4f;
+            box-shadow: 0 8px 18px rgba(0,60,70,0.2);
+            border: 1px solid #c0b29a;
+            transition: 0.2s;
+        }
+        .messenger-link i {
+            font-size: 2rem;
+        }
+        .messenger-link.whatsapp i { color: #25D366; }
+        .messenger-link.telegram i { color: #0088cc; }
+        .messenger-link:hover {
+            background: #f7efe3;
+            transform: scale(1.02);
+            box-shadow: 0 10px 22px #6d7f8f;
+        }
+        .small-note i {
+            margin: 0 5px;
+        }
+
+        /* Подвал */
+        footer {
+            background-color: #182e39;
+            color: #e0e9ef;
+            padding: 40px 0;
+            text-align: center;
+            border-top-left-radius: 60px;
+            border-top-right-radius: 60px;
+            margin-top: 60px;
+        }
+        footer .small-note {
+            opacity: 0.8;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+        footer i {
+            color: #ddb48b;
+        }
+
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2.4rem; }
+            .hero h2 { font-size: 1.4rem; }
+            .section-title { font-size: 2rem; }
+            .city-img { height: 220px; }
+            .phone-big { font-size: 1.6rem; padding: 15px 25px; }
+            .phone-big i { font-size: 2rem; }
+            .messenger-link { font-size: 1.2rem; padding: 12px 20px; }
+        }
+        @media (max-width: 450px) {
+            .hero .guide-name { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="container hero-content">
+            <h1>Казань, Свияжск, Болгар</h1>
+            <h2>Авторские экскурсии с душой и знанием истории</h2>
+            <div class="guide-name">
+                <i class="fas fa-heart"></i> Эйдельман Любовь
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Три жемчужины Татарстана</h2>
+            <p class="intro-text">
+                Приглашаю вас в путешествие по местам, где переплетаются культуры, века и удивительные судьбы. 
+                Я, Любовь Эйдельман, с радостью покажу вам родной край во всей красе.
+            </p>
+
+            <!-- Карточки городов с живыми изображениями -->
+            <div class="city-grid">
+                <!-- Казань -->
+                <div class="city-card">
+                    <div class="city-img kazan">
+                        <h3>Казань</h3>
+                    </div>
+                    <div class="city-info">
+                        <p><strong>Столица с тысячелетней историей</strong> — здесь встречаются Восток и Запад.</p>
+                        <ul class="city-feature">
+                            <li><i class="fas fa-landmark"></i> Казанский Кремль (объект ЮНЕСКО)</li>
+                            <li><i class="fas fa-mosque"></i> Мечеть Кул-Шариф</li>
+                            <li><i class="fas fa-church"></i> Старо-Татарская слобода</li>
+                            <li><i class="fas fa-utensils"></i> Дегустация национальной кухни</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Свияжск -->
+                <div class="city-card">
+                    <div class="city-img sviyazhsk">
+                        <h3>Свияжск</h3>
+                    </div>
+                    <div class="city-info">
+                        <p><strong>Остров-град, крепость Ивана Грозного</strong> — музей под открытым небом.</p>
+                        <ul class="city-feature">
+                            <li><i class="fas fa-archway"></i> Успенский монастырь (фрески XVI в.)</li>
+                            <li><i class="fas fa-water"></i> Живописные виды на Волгу</li>
+                            <li><i class="fas fa-tree"></i> Конный двор и мастер-классы</li>
+                            <li><i class="fas fa-history"></i> История острова-града</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Болгар -->
+                <div class="city-card">
+                    <div class="city-img bolgar">
+                        <h3>Болгар</h3>
+                    </div>
+                    <div class="city-info">
+                        <p><strong>Древняя столица Золотой Орды</strong> — священное место и памятник ЮНЕСКО.</p>
+                        <ul class="city-feature">
+                            <li><i class="fas fa-monument"></i> Белая мечеть</li>
+                            <li><i class="fas fa-umbrella-beach"></i> Музей хлеба и ремёсел</li>
+                            <li><i class="fas fa-torii-gate"></i> Малый минарет и ханская усыпальница</li>
+                            <li><i class="fas fa-quran"></i> Древний Коран</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Почему выбирают экскурсии Любови -->
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Почему со мной полюбят путешествие</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <i class="fas fa-smile"></i>
+                    <h4>Душевность</h4>
+                    <p>Индивидуальный подход и тёплая атмосфера — как для старых друзей.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-book-open"></i>
+                    <h4>Глубокие знания</h4>
+                    <p>Историк по образованию, влюблена в каждый уголок Татарстана.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-car-side"></i>
+                    <h4>Комфорт</h4>
+                    <p>Продуманный маршрут, трансфер и лучшие локации для фото.</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-camera-retro"></i>
+                    <h4>Авторские маршруты</h4>
+                    <p>Покажу не только хиты, но и скрытые жемчужины.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Яркий блок с контактом мамы + Telegram/WhatsApp -->
+    <div class="container">
+        <div class="cta-section">
+            <h3>Откройте Татарстан с любовью!</h3>
+            <p>Просто позвоните или напишите Любови — и она соберёт для вас идеальную экскурсию.</p>
+            <a href="tel:+79061159039" class="phone-big">
+                <i class="fas fa-phone-alt"></i> +7 (906) 115-90-39
+            </a>
+            
+            <!-- Мессенджеры (WhatsApp и Telegram) -->
+            <div class="messenger-row">
+                <a href="https://wa.me/79061159039" target="_blank" class="messenger-link whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://t.me/+79061159039" target="_blank" class="messenger-link telegram">
+                    <i class="fab fa-telegram-plane"></i> Telegram
+                </a>
+            </div>
+            <p style="margin-top: 25px; font-size: 1rem; opacity: 0.8;"><i class="fas fa-clock"></i> Звоните с 9:00 до 21:00, без выходных</p>
+        </div>
+    </div>
+
+    <!-- Немного личного / Галерея вдохновения -->
+    <div class="container" style="margin-bottom: 30px;">
+        <div style="background: #e5d5c0; border-radius: 100px 20px 100px 20px; padding: 40px; background-image: radial-gradient(circle at top right, #f8ede3, transparent);">
+            <div style="display: flex; flex-wrap: nowrap; align-items: center; gap: 30px;">
+                <div style="min-width: 250px;">
+                    <i class="fas fa-quote-right" style="font-size: 4rem; color: #a0815f; opacity: 0.4;"></i>
+                    <p style="font-size: 1.5rem; font-style: italic; color: #2c4e5e;">«Я покажу вам не просто даты и факты, а живую историю, которую чувствую сердцем. Приезжайте, буду рада каждому!»</p>
+                    <p style="font-size: 1.3rem; margin-top: 15px;">— Любовь Эйдельман</p>
+                </div>
+                <div style="min-width: 250px; height: 250px; border-radius: 50%; background: url('https://fs.tonkosti.ru/tonkosti/table_img/g190/7d7d/268967919.jpg') center/cover; box-shadow: 0 20px 30px #5e4d3b60;"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p><i class="fas fa-star"></i> Экскурсии по Казани, Свияжску и Болгару <i class="fas fa-star"></i></p>
+            <p class="small-note">Эйдельман Любовь — частный гид с большой душой</p>
+            <p class="small-note" style="margin-top: 20px;">
+                <i class="fas fa-phone-alt"></i> <a href="tel:+79061159039" style="color: #ffdbb5; text-decoration: none;">+7 (906) 115-90-39</a> | 
+                <i class="fab fa-whatsapp" style="color:#25D366;"></i> <a href="https://wa.me/79061159039" style="color:#ffdbb5;">WhatsApp</a> | 
+                <i class="fab fa-telegram-plane" style="color:#0088cc;"></i> <a href="https://t.me/+79061159039" style="color:#ffdbb5;">Telegram</a>
+            </p>
+            <p style="margin-top: 30px;"> <i class="fas fa-copyright"></i> 2025 | Путешествия с Любовью</p>
+        </div>
+    </footer>
+</body>
+</html>
